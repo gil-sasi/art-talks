@@ -1,0 +1,47 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.error-boundary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.error-boundary h2 {
+  color: #dc3545;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+
+.error-boundary p {
+  color: #666;
+  margin-bottom: 24px;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.error-boundary-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.error-boundary-button:hover {
+  background: #0056b3;
+}

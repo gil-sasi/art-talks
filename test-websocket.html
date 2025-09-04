@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .connected { background: #d4edda; color: #155724; }
+        .disconnected { background: #f8d7da; color: #721c24; }
+        .message { background: #f8f9fa; padding: 10px; margin: 5px 0; border-radius: 5px; }
+        button { padding: 10px 20px; margin: 5px; }
+        input { padding: 10px; width: 300px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Art Talks WebSocket Test</h1>
+    
+    <div id="status" class="status disconnected">❌ Disconnected</div>
+    
+    <div>
+        <input type="text" id="messageInput" placeholder="Type a test message..." />
+        <button onclick="sendMessage()">Send Message</button>
+        <button onclick="connect()">Connect</button>
+        <button onclick="disconnect()">Disconnect</button>
+    </div>
+    
+    <h3>📨 Messages:</h3>
+    <div id="messages"></div>
+    
+    <script>
+        let ws = null;
+        const statusEl = document.getElementById('status');
+        const messagesEl = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        
+        function updateStatus(connected, message) {
+            statusEl.className = `status ${connected ? 'connected' : 'disconnected'}`;
+            statusEl.textContent = `${connected ? '✅' : '❌'} ${message}`;
+        }
+        
+        function addMessage(message, type = 'received') {
+            const div = document.createElement('div');
+            div.className = 'message';
+            div.innerHTML = `<strong>${type}:</strong> ${JSON.stringify(message, null, 2)}`;
+            messagesEl.appendChild(div);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+        
+        function connect() {
+            if (ws) {
+                ws.close();
+            }
+            
+            updateStatus(false, 'Connecting...');
+            
+            // Connect to test room
+            ws = new WebSocket('ws://localhost:8080/chat/test');
+            
+            ws.onopen = () => {
+                updateStatus(true, 'Connected to Art Talks WebSocket Server!');
+                addMessage('WebSocket connection established', 'system');
+            };
+            
+            ws.onmessage = (event) => {
+                const message = JSON.parse(event.data);
+                addMessage(message, 'received');
+            };
+            
+            ws.onclose = () => {
+                updateStatus(false, 'Disconnected');
+                addMessage('WebSocket connection closed', 'system');
+            };
+            
+            ws.onerror = (error) => {
+                updateStatus(false, 'Connection Error');
+                addMessage(`Error: ${error}`, 'error');
+            };
+        }
+        
+        function disconnect() {
+            if (ws) {
+                ws.close();
+                ws = null;
+            }
+        }
+        
+        function sendMessage() {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                alert('Not connected to WebSocket server!');
+                return;
+            }
+            
+            const text = messageInput.value.trim();
+            if (!text) return;
+            
+            const message = {
+                type: 'message',
+                data: {
+                    text: text,
+                    isOwnMessage: true
+                },
+                sender: 'TestUser',
+                timestamp: new Date().toISOString()
+            };
+            
+            ws.send(JSON.stringify(message));
+            addMessage(message, 'sent');
+            messageInput.value = '';
+        }
+        
+        // Auto-connect on page load
+        connect();
+        
+        // Send message on Enter key
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

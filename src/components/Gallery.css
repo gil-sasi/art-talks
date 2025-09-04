@@ -1,0 +1,213 @@
+.gallery {
+  width: 100%;
+  margin: 0;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+
+.gallery-header {
+  text-align: left;
+  margin-bottom: 32px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gallery-header h1 {
+  font-size: 1.75rem;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.search-container {
+  max-width: 320px;
+  margin-bottom: 24px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  background: white;
+}
+
+.search-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.art-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.art-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.art-image-container {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  background-color: #f9fafb;
+}
+
+.image-tooltip {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(17, 24, 39, 0.9);
+  color: white;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  z-index: 10;
+  max-width: 180px;
+  backdrop-filter: blur(4px);
+}
+
+.art-image-container:hover .image-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.tooltip-row:last-child {
+  margin-bottom: 0;
+}
+
+.tooltip-label {
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.tooltip-value {
+  color: #ccc;
+}
+
+.art-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.art-card:hover .art-image {
+  transform: scale(1.05);
+}
+
+.art-info {
+  padding: 16px;
+}
+
+.art-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 4px 0;
+  line-height: 1.4;
+}
+
+.art-artist {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 8px 0;
+  font-weight: 400;
+}
+
+.art-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.no-results {
+  text-align: center;
+  padding: 48px 20px;
+  color: #6b7280;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.no-results p {
+  font-size: 0.875rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    padding: 16px;
+  }
+  
+  .gallery-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .search-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .art-image-container {
+    height: 140px;
+  }
+  
+  .art-info {
+    padding: 12px;
+  }
+}
