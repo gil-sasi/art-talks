@@ -90,8 +90,8 @@ export const useChat = (initialMessages: ChatMessage[] = [], artworkId?: number)
   /**
    * EXPLANATION: WebSocket connection setup
    * - Connects to WebSocket server (or mock server in development)
-   * - Each artwork gets its own "room" for separate discussions
-   * - Handles connection status and errors
+   * - Each artwork gets its own "room" for separate discussions (artworkId)
+   * - Handles connection status and errors (onConnect, onDisconnect, onError)
    */
   // Memoize callback functions to prevent WebSocket reconnections
   const onConnect = useCallback(() => {
