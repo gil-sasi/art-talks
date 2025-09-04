@@ -16,7 +16,7 @@ import { useWebSocket, type WebSocketMessage } from './useWebSocket';
  * @param artworkId - ID of the artwork being discussed (for room separation)
  * @returns Chat state and actions
  */
-export const useChat = (initialMessages: ChatMessage[] = [], artworkId?: number) => {
+export const useChat = (_initialMessages: ChatMessage[] = [], artworkId?: number) => {
   // Start with empty messages - purely WebSocket-based, no persistence
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [newMessage, setNewMessage] = useState('');
@@ -74,7 +74,7 @@ export const useChat = (initialMessages: ChatMessage[] = [], artworkId?: number)
             return newSet;
           });
           // Update typing status based on remaining typing users
-          setIsTyping(prev => {
+          setIsTyping(_prev => {
             const updatedSet = new Set(typingUsers);
             updatedSet.delete(wsMessage.sender!);
             return updatedSet.size > 0;
@@ -102,7 +102,7 @@ export const useChat = (initialMessages: ChatMessage[] = [], artworkId?: number)
     // WebSocket disconnected
   }, []);
 
-  const onError = useCallback((error: Event) => {
+  const onError = useCallback((_error: Event) => {
     // WebSocket connection error
   }, []);
 

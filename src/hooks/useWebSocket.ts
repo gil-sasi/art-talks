@@ -198,7 +198,7 @@ export const useWebSocket = (options: UseWebSocketOptions) => {
       };
 
       // Connection closed
-      ws.current.onclose = (event) => {
+      ws.current.onclose = (_event) => {
         setIsConnected(false);
         setIsConnecting(false);
         onDisconnectRef.current?.();
