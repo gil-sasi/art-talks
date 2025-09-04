@@ -2,7 +2,7 @@
 
 ##  Project Overview
 
-**Art Talks** is a modern, full-stack web application that combines an interactive art gallery with real-time chat functionality. Users can browse artworks and engage in live discussions about each piece, powered by WebSocket technology for instant communication.
+**Art Talks** is assignment for Compie Technologies
 
 ###  Architecture
 
@@ -49,7 +49,7 @@ npm run dev
 - **WebSocket Server**: ws://localhost:8080
 - **API Endpoints**: http://localhost:8080/api/
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 art-talks/
