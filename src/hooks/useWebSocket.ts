@@ -17,15 +17,6 @@ export interface UseWebSocketOptions {
   reconnectInterval?: number;
 }
 
-/**
- * Custom hook for WebSocket connection management
- * 
- * EXPLANATION:
- * - Manages WebSocket lifecycle (connect, disconnect, reconnect)
- * - Handles message sending/receiving
- * - Provides connection status
- * - Auto-reconnection on connection loss
- */
 export const useWebSocket = (options: UseWebSocketOptions) => {
   const {
     url,
@@ -72,17 +63,15 @@ export const useWebSocket = (options: UseWebSocketOptions) => {
     if (ws.current?.readyState === WebSocket.OPEN) {
       return; // Already connected
     }
-
     setIsConnecting(true);
     setError(null);
-
     try {
       // Create new WebSocket connection
       ws.current = new WebSocket(url);
 
       // Connection opened successfully
       ws.current.onopen = () => {
-        console.log('✅ WebSocket connected');
+        console.log('WebSocket connected');
         setIsConnected(true);
         setIsConnecting(false);
         setError(null);
@@ -94,16 +83,16 @@ export const useWebSocket = (options: UseWebSocketOptions) => {
       ws.current.onmessage = (event) => {
         try {
           const message: WebSocketMessage = JSON.parse(event.data);
-          console.log('📨 Message received:', message);
+          console.log('Message received:', message);
           onMessage?.(message);
         } catch (err) {
-          console.error('❌ Failed to parse WebSocket message:', err);
+          console.error('Failed to parse WebSocket message:', err);
         }
       };
 
       // Connection closed
       ws.current.onclose = (event) => {
-        console.log('🔌 WebSocket disconnected:', event.code, event.reason);
+        console.log('WebSocket disconnected:', event.code, event.reason);
         setIsConnected(false);
         setIsConnecting(false);
         onDisconnect?.();
@@ -111,7 +100,7 @@ export const useWebSocket = (options: UseWebSocketOptions) => {
         // Auto-reconnect logic
         if (autoReconnect && reconnectAttempts.current < maxReconnectAttempts) {
           reconnectAttempts.current++;
-          console.log(`🔄 Attempting reconnection ${reconnectAttempts.current}/${maxReconnectAttempts}`);
+          console.log(`Attempting reconnection ${reconnectAttempts.current}/${maxReconnectAttempts}`);
           
           reconnectTimeoutRef.current = window.setTimeout(() => {
             connect();
@@ -121,14 +110,14 @@ export const useWebSocket = (options: UseWebSocketOptions) => {
 
       // Connection error
       ws.current.onerror = (event) => {
-        console.error('❌ WebSocket error:', event);
+        console.error('WebSocket error:', event);
         setError('Connection failed');
         setIsConnecting(false);
         onError?.(event);
       };
 
     } catch (err) {
-      console.error('❌ Failed to create WebSocket:', err);
+      console.error('Failed to create WebSocket:', err);
       setError('Failed to connect');
       setIsConnecting(false);
     }
