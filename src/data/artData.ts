@@ -50,7 +50,7 @@ export const artPieces: readonly ArtPiece[] = [
     title: "Digital Renaissance",
     artist: "Alex Kumar",
     description: "A modern interpretation of classical themes using digital art techniques, blending traditional composition with contemporary style.",
-    imageUrl: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop&auto=format&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
     category: "digital"
   },
   {
@@ -58,7 +58,7 @@ export const artPieces: readonly ArtPiece[] = [
     title: "Mountain Reflection",
     artist: "Isabella Romano",
     description: "A pristine alpine lake perfectly mirrors the towering peaks above, creating a symmetrical masterpiece of natural beauty.",
-    imageUrl: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=400&h=300&fit=crop",
     category: "landscape"
   },
   {
@@ -114,7 +114,7 @@ export const artPieces: readonly ArtPiece[] = [
     title: "Golden Hour",
     artist: "Kevin Liu",
     description: "A warm landscape bathed in the soft golden light of sunset, with rolling hills and scattered trees creating perfect silhouettes.",
-    imageUrl: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop&auto=format&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=300&fit=crop",
     category: "landscape"
   },
   {
@@ -130,7 +130,7 @@ export const artPieces: readonly ArtPiece[] = [
     title: "Inner Reflection",
     artist: "Thomas Anderson",
     description: "A psychological portrait exploring themes of identity and self-awareness through layered imagery and symbolic elements.",
-    imageUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1566492031773-4f4e44671d66?w=400&h=300&fit=crop",
     category: "portrait"
   }
 ];
